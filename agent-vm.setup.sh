@@ -23,10 +23,25 @@ sudo apt-get install -y \
   ripgrep fd-find htop \
   unzip zip \
   ca-certificates \
-  iptables
+  iptables \
+  libssl-dev libreadline-dev zlib1g-dev libyaml-dev libffi-dev
 
 # Set zsh as default shell
 sudo chsh -s /usr/bin/zsh "$(whoami)"
+
+# Install rbenv + ruby-build (Ruby version manager)
+echo "Installing rbenv and ruby-build..."
+git clone https://github.com/rbenv/rbenv.git ~/.rbenv
+git clone https://github.com/rbenv/ruby-build.git ~/.rbenv/plugins/ruby-build
+
+# Auto-install bundler after every rbenv install
+echo "bundler" > ~/.rbenv/default-gems
+
+# Configure rbenv in shell
+echo 'export PATH=$HOME/.rbenv/bin:$PATH' >> ~/.zshrc
+echo 'eval "$(rbenv init -)"' >> ~/.zshrc
+echo 'export PATH=$HOME/.rbenv/bin:$PATH' >> ~/.zshenv
+echo 'eval "$(rbenv init -)"' >> ~/.zshenv
 
 # Install Docker from official repo (includes docker compose)
 echo "Installing Docker..."

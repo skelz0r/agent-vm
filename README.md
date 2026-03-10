@@ -158,6 +158,15 @@ npm install
 docker compose up -d
 ```
 
+For Ruby projects, install your Ruby version in the runtime script:
+
+```bash
+# your-project/.agent-vm.runtime.sh
+rbenv install 3.3.0 --skip-existing
+rbenv local 3.3.0
+bundle install
+```
+
 ### MCP servers
 
 The base VM comes with [Chrome DevTools MCP](https://github.com/ChromeDevTools/chrome-devtools-mcp) pre-configured for Claude, giving the agent headless browser access.
@@ -201,6 +210,7 @@ Each VM is fully isolated — agents must authenticate independently inside thei
 |----------|----------|
 | Core | git, curl, wget, jq, build-essential, unzip, zip |
 | Python | python3, pip, venv |
+| Ruby | rbenv, ruby-build (no version pre-installed) |
 | Node.js | Node.js 24 LTS (via NodeSource) |
 | Search | ripgrep, fd-find |
 | Utilities | htop, GitHub CLI (gh) |
